@@ -8,6 +8,7 @@ import {
 
 import { WazuhCheckUpdatesPluginSetup, WazuhCheckUpdatesPluginStart } from './types';
 import { defineRoutes } from './routes';
+import { getUpdate, getUpdateList } from './services';
 
 export class WazuhCheckUpdatesPlugin
   implements Plugin<WazuhCheckUpdatesPluginSetup, WazuhCheckUpdatesPluginStart> {
@@ -27,10 +28,13 @@ export class WazuhCheckUpdatesPlugin
     return {};
   }
 
-  public start(core: CoreStart) {
+  public start(core: CoreStart): WazuhCheckUpdatesPluginStart {
     this.logger.debug('wazuhCheckUpdates: Started');
-    return {};
+    return {
+      getUpdate,
+      getUpdateList
+    };
   }
 
-  public stop() {}
+  public stop() { }
 }
